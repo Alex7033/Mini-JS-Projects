@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main id="main">
+      <section class="search">
+        <form class="form" id="form">
+          <div class="">
+            <input
+              type="text"
+              class="form-control"
+              id="search"
+              placeholder="Location"
+            />
+          </div>
+          <div class="">
+            <button type="submit" class="btn">Search</button>
+          </div>
+        </form>
+      </section>
+      <section class="weatherContainer">
+        <div class="mainInfo">
+          <p class="degrees">23C</p>
+          <!-- <img src="" alt="" srcset=""> -->
+          <p class="description">Sunny</p>
+          <p class="humidity">Humidity 30%</p>
+          <p class="wind">Wind - 10km/h</p>
+        </div>
+        <div class="secondaryInfo">
+          <div class="imgContainer">
+            <img src="./berlin.jpg" alt="" srcset="" id="img" class="img"/>
+          </div>
+          <div>
+            <p class="city">City Name</p>
+            <p class="time">Time</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <h7>Made by Alex7033</h7>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

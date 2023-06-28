@@ -1,0 +1,101 @@
+:root {
+  --temporaryBorder: black 1px;
+}
+
+body {
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+
+  font-family: "Ubuntu", sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: var(--temporaryBorder);
+  height: 90vh;
+  width: 60vw;
+  /* padding: 0.5em; */
+  margin: 1vh auto 0;
+  /* this line allows the container to expand with the content */
+  /* align-items: start; */
+}
+.search {
+  margin: 50px;
+  margin-bottom: auto;
+}
+.search .form {
+  border: var(--temporaryBorder);
+  display: flex;
+  width: 30vw;
+  justify-content: center;
+  align-items: center;
+}
+section {
+  /* background: pink; */
+}
+.weatherContainer {
+  padding-top: 1rem;
+  padding-right: 1rem;
+  /* border: var(--temporaryBorder); */
+  background: gray;
+  border-radius: 2rem;
+  position: absolute;
+  /* border: pink; */
+  display: flex;
+  flex-direction: row;
+  width: 40vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.weatherContainer > * {
+  border: var(--temporaryBorder);
+}
+.mainInfo {
+  min-width: 10vw;
+}
+.degrees {
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.secondaryInfo {
+  margin-left: auto;
+  margin-right: auto;
+}
+p {
+  line-height: 1.7;
+}
+img {
+  float: left;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 3rem;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (max-width: 900px) {
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  p {
+    font-size: 0.7rem;
+  }
+  main {
+    height: 60vh;
+  }
+  .degrees {
+    font-size: 1.3rem;
+  }
+  input {
+    width: 100px;
+  }
+}
