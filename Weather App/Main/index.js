@@ -66,6 +66,7 @@ const displayWeather = function (data) {
     
   };
   console.log(tempColor)
+  // start again from here
   document.body.style.background = backgroundColorFunc(temp);
 
   //
