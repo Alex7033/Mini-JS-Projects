@@ -35,16 +35,18 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
+  /* margin-left: auto; */
   /* margin-right: auto; */
 }
 
 button {
-  margin: 0.5em;
+  margin: 1em;
+  margin-top: 1.9em;
+  padding: auto;
   border-radius: 50%;
   border: none;
-  height: 44px;
-  width: 44px;
+  height: 50px;
+  width: 50px;
   cursor: pointer;
   outline: none;
   background: #7c7c7c2b;
@@ -60,13 +62,14 @@ input.search-bar {
   color: white;
   font-family: inherit;
   font-size: 110%;
-  width: calc(100% - 100px);
+  width: calc(100% - 150px);
   margin-left: 8px;
+  margin-top: 0.6em;
+  
 }
 
 button:hover {
   background: #7c7c7c6b;
-  
   transition: 0.2s ease-in-out;
 }
 
@@ -91,7 +94,7 @@ h1.temp {
 
 .weather.loading {
   visibility: hidden;
-  max-height: 20px;
+  max-height: 40px;
   position: relative;
 }
 
