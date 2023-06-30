@@ -3,7 +3,7 @@ const apiKey = "59aee0e7f4dde9271ce1af6a444c4dad";
 // create a document.querySelector to improve legibility
 // shorten the fetch call
 
-const fetchWeather = function (city) {
+const fetchWeather = async function (city) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}
       &appid=${apiKey}&units=metric`
@@ -19,12 +19,12 @@ const displayWeather = function (data) {
   const { speed } = data.wind;
   // console.log(name, icon, description, temp, humidity, speed);
   console.log(name, temp);
-  console.log()
+
   document.querySelector(".city").innerText = `Weather in ${name}`;
   document.querySelector(
     ".icon"
     //   refactor src to a short variable with the api img
-  ).src = `http://openweathermap.org/img/wn/${icon}.png`;
+  ).src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
   document.querySelector(".description").innerText = `${description}`;
   document.querySelector(".temp").innerText = `${Math.floor(temp)} °C`;
 
@@ -35,45 +35,67 @@ const displayWeather = function (data) {
   document.querySelector(".weather").classList.remove("loading");
 
   // backgroud color functionality
-  let perc = 1;
-  let backgroundColorFunc = function (perc) {
-    let r,
-      g,
-      b = 0;
-    if (perc < 50) {
-      r = 255;
-      g = Math.round(5.1 * perc);
-    } else {
-      g = 255;
-      r = Math.round(510 - 5.1 * perc);
+  // card.style.background = "rgba(64, 160, 152, 0.36)";
+  const tempColor = function () {
+    const card = document.querySelector(".card");
+    const tempNumber = document.querySelector(".tempNumber");
+    if (temp <= 10) {
+      card.style.background = "blue";
+      tempNumber.style.color = "blue";
     }
-    let h = r * 0x10000 + g * 0x100 + b * 0x1;
-    return "#" + ("000000" + h.toString(16)).slice(-6);
+    if (temp > 10 && temp <= 23) {
+      card.style.background = "green";
+      tempNumber.style.color = "green";
+    }
+    if (temp > 23 && temp < 30) {
+      card.style.background = "yellow";
+      tempNumber.style.color = "yellow";
+    }
+    if (temp >= 30) {
+      card.style.background = "red";
+      tempNumber.style.color = "red";
+    }
+    console.log(temp);
   };
-  let tempColor = function (temp) {
-    if (temp < 10) {
-      perc = "#0000FF";
-    }
-    if (temp > 10 || temp >= 23) {
-      perc = 75;
-    }
-    if (temp > 23 || temp < 30) {
-      perc = 18;
-    }
-    if (temp > 30) {
-      perc = 1;
-    }
-    
-  };
-  console.log(tempColor)
-  // start again from here
-  document.body.style.background = backgroundColorFunc(temp);
+  tempColor(temp);
 
-  //
-  // background color functionality
-  // let dogUrl = url('https://dog.ceo/api/breeds/image/random')
+  // let perc = 1;
+  // let backgroundColorFunc = function (perc) {
+  //   let r,
+  //     g,
+  //     b = 0;
+  //   if (perc < 50) {
+  //     r = 255;
+  //     g = Math.round(5.1 * perc);
+  //   } else {
+  //     g = 255;
+  //     r = Math.round(510 - 5.1 * perc);
+  //   }
+  //   let h = r * 0x10000 + g * 0x100 + b * 0x1;
+  //   return "#" + ("000000" + h.toString(16)).slice(-6);
+  // };
+  // let tempColor = function (temp) {
+  //   if (temp < 10) {
+  //     perc = "#0000FF";
+  //   }
+  //   if (temp > 10 || temp >= 23) {
+  //     perc = 75;
+  //   }
+  //   if (temp > 23 || temp < 30) {
+  //     perc = 18;
+  //   }
+  //   if (temp > 30) {
+  //     perc = 1;
+  //   }
+  //   return perc
+
+  // };
+  // console.log(tempColor)
+
+  // document.body.style.background = backgroundColorFunc(temp);
+  // console.log(backgroundColorFunc())
+
   // document.body.style.backgroundImage = "";
-  // document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${name}')`
 };
 const search = function () {
   let input = document.querySelector(".search-bar").value;
@@ -105,3 +127,4 @@ const activate = function () {
   //   document.body.style.background = weather.tempColor(30);
   //   console.log(weather.tempColor(30))
 };
+fetchWeather("berlin");

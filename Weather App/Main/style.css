@@ -2,7 +2,7 @@ body {
   background: #222;
   /* font-family: "Outfit", sans-serif; */
   font-family: "Poppins", sans-serif;
-  /* background-image: url("https://source.unsplash.com/1600x900/?landscape"); */
+  background-image: url('../background.jpeg');
   font-size: 120%;
 }
 
@@ -21,8 +21,8 @@ main {
 }
 
 .card {
-  /* background: #000000d0; */
-  background: red;
+  background: #000000d0;
+  /* background: red; */
   color: white;
   padding: 0.5em;
   border-radius: 30px;
