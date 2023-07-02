@@ -63,15 +63,14 @@ const displayWeather = (data) => {
 };
 const search = function () {
   let searchInput = document.querySelector(".search-bar").value;
-  // input is not needed
 
   if (searchInput == "") {
     console.log("no location input");
     document.querySelector(".notification").classList.remove("hidden");
-    document.querySelector('.note').innerText = 'Please type a location'
+    document.querySelector(".note").innerText = "Please type a location";
   } else {
     fetchWeather(searchInput);
-    document.querySelector('.note').innerText = 'No location found'
+    document.querySelector(".note").innerText = "No location found";
     document.querySelector(".notification").classList.add("hidden");
   }
 };

@@ -16,10 +16,13 @@ main {
   border: var(--temporaryBorder);
   height: 90vh;
   width: 60vw;
-  /* padding: 0.5em; */
   margin: 1vh auto 0;
   /* this line allows the container to expand with the content */
   /* align-items: start; */
+
+  /* this centers by margin */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
 }
 .search {
   margin: 50px;
@@ -32,17 +35,12 @@ main {
   justify-content: center;
   align-items: center;
 }
-section {
-  /* background: pink; */
-}
 .weatherContainer {
   padding-top: 1rem;
   padding-right: 1rem;
-  /* border: var(--temporaryBorder); */
   background: gray;
   border-radius: 2rem;
   position: absolute;
-  /* border: pink; */
   display: flex;
   flex-direction: row;
   width: 40vw;
