@@ -1,29 +1,37 @@
 const apiKey = "59aee0e7f4dde9271ce1af6a444c4dad";
-//   url: `https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}`,
-// create a document.querySelector to improve legibility
-// shorten the fetch call
 
-const fetchWeather = async function (city) {
+const fetchWeather = async (city) => {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}
-      &appid=${apiKey}&units=metric`
+        &appid=${apiKey}&units=metric`
   )
     .then((response) => response.json())
-    .then((data) => displayWeather(data));
+    .then((data) => {
+      if (data.cod == 404) {
+        console.log("error city");
+        document.querySelector(".notification").classList.remove("hidden");
+      } else {
+        displayWeather(data);
+      }
+    });
 };
-const displayWeather = function (data) {
-  // refactor to have only one innerHTML return for deconstructed properties
-  const { name } = data;
+
+const displayWeather = (data) => {
+  document.querySelector(".weather").classList.remove("hidden");
+  document.querySelector(".notification").classList.add("hidden");
+  const { name, timezone, cod } = data;
   const { icon, description } = data.weather[0];
   const { temp, humidity } = data.main;
   const { speed } = data.wind;
-  // console.log(name, icon, description, temp, humidity, speed);
-  console.log(name, temp);
+
+  console.log(name, timezone, cod, icon, description, temp, humidity, speed);
+  if (cod == 404) {
+    alert("error city");
+  }
 
   document.querySelector(".city").innerText = `Weather in ${name}`;
   document.querySelector(
     ".icon"
-    //   refactor src to a short variable with the api img
   ).src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
   document.querySelector(".description").innerText = `${description}`;
   document.querySelector(".temp").innerText = `${Math.floor(temp)} °C`;
@@ -32,78 +40,39 @@ const displayWeather = function (data) {
   document.querySelector(".wind").innerText = `Wind speed ${Number(
     speed
   ).toFixed(1)} km/h`;
-  document.querySelector(".weather").classList.remove("loading");
 
-  // backgroud color functionality
-  // card.style.background = "rgba(64, 160, 152, 0.36)";
+  // COLOR ---------------
   const tempColor = function () {
     const card = document.querySelector(".card");
     const tempNumber = document.querySelector(".tempNumber");
     if (temp <= 10) {
       card.style.background = "blue";
       tempNumber.style.color = "blue";
-    }
-    if (temp > 10 && temp <= 23) {
+    } else if (temp > 10 && temp <= 23) {
       card.style.background = "green";
       tempNumber.style.color = "green";
-    }
-    if (temp > 23 && temp < 30) {
-      card.style.background = "yellow";
-      tempNumber.style.color = "yellow";
-    }
-    if (temp >= 30) {
+    } else if (temp > 23 && temp < 30) {
+      card.style.background = "rgba(245, 255, 51, 0.59)";
+      tempNumber.style.color = "rgba(245, 255, 51, 0.59)";
+    } else if (temp >= 30) {
       card.style.background = "red";
       tempNumber.style.color = "red";
     }
-    console.log(temp);
   };
   tempColor(temp);
-
-  // let perc = 1;
-  // let backgroundColorFunc = function (perc) {
-  //   let r,
-  //     g,
-  //     b = 0;
-  //   if (perc < 50) {
-  //     r = 255;
-  //     g = Math.round(5.1 * perc);
-  //   } else {
-  //     g = 255;
-  //     r = Math.round(510 - 5.1 * perc);
-  //   }
-  //   let h = r * 0x10000 + g * 0x100 + b * 0x1;
-  //   return "#" + ("000000" + h.toString(16)).slice(-6);
-  // };
-  // let tempColor = function (temp) {
-  //   if (temp < 10) {
-  //     perc = "#0000FF";
-  //   }
-  //   if (temp > 10 || temp >= 23) {
-  //     perc = 75;
-  //   }
-  //   if (temp > 23 || temp < 30) {
-  //     perc = 18;
-  //   }
-  //   if (temp > 30) {
-  //     perc = 1;
-  //   }
-  //   return perc
-
-  // };
-  // console.log(tempColor)
-
-  // document.body.style.background = backgroundColorFunc(temp);
-  // console.log(backgroundColorFunc())
-
-  // document.body.style.backgroundImage = "";
 };
 const search = function () {
-  let input = document.querySelector(".search-bar").value;
+  let searchInput = document.querySelector(".search-bar").value;
   // input is not needed
-  if (input == "") {
-    alert("Please type a city");
+
+  if (searchInput == "") {
+    console.log("no location input");
+    document.querySelector(".notification").classList.remove("hidden");
+    document.querySelector('.note').innerText = 'Please type a location'
   } else {
-    fetchWeather(input);
+    fetchWeather(searchInput);
+    document.querySelector('.note').innerText = 'No location found'
+    document.querySelector(".notification").classList.add("hidden");
   }
 };
 
@@ -114,7 +83,6 @@ searchBtn.addEventListener("click", function () {
 });
 
 document.querySelector(".search-bar").addEventListener("keyup", function (e) {
-  // console.log('enter')
   if (e.key == "Enter") {
     activate();
   }
@@ -123,8 +91,5 @@ document.querySelector(".search-bar").addEventListener("keyup", function (e) {
 const activate = function () {
   search();
   document.querySelector(".search-bar").value = "";
-
-  //   document.body.style.background = weather.tempColor(30);
-  //   console.log(weather.tempColor(30))
 };
 fetchWeather("berlin");

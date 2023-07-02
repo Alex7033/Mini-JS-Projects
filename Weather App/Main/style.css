@@ -2,29 +2,49 @@ body {
   background: #222;
   /* font-family: "Outfit", sans-serif; */
   font-family: "Poppins", sans-serif;
-  background-image: url('../background.jpeg');
-  font-size: 120%;
+  background-image: url("../clouds.jpeg");
+  /* background-image: url('https://www.pexels.com/photo/aerial-view-photo-of-high-rise-buildings-1128408/'); */
+
+  font-size: 140%;
+}
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  margin-top: 0.6em;
+  height: 10vh;
+  position: relative;
+  /* border: 1px solid black; */
+  /* visibility: hidden; */
 }
 
+.notification.hidden {
+  visibility: hidden;
+}
+
+.notification.hidden:after{
+  color: white;
+}
 main {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  height: 100vh;
+  height: 80vh;
 }
 
 .cardContainer {
-    background: black;
-    border-radius: inherit;
-    /* display: flex; */
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: inherit;
+  /* display: flex; */
 }
 
 .card {
-  background: #000000d0;
+  background: #0000002b;
   /* background: red; */
   color: white;
-  padding: 0.5em;
+  padding: 0.25em;
   border-radius: 30px;
   width: 100%;
   max-width: 420px;
@@ -65,7 +85,6 @@ input.search-bar {
   width: calc(100% - 150px);
   margin-left: 8px;
   margin-top: 0.6em;
-  
 }
 
 button:hover {
@@ -74,7 +93,11 @@ button:hover {
 }
 
 h1.temp {
-  margin: 0;
+  /* margin: 0; */
+  /* font-size: 2em; */
+  /* border: black solid 10px; */
+  padding: 0.3em;
+  flex-flow: row;
   margin-bottom: 0.4em;
 }
 
@@ -82,23 +105,30 @@ h1.temp {
   display: flex;
   align-items: center;
 }
+.hourContainer {
+  margin-left: 7em;
+}
+.hour {
+  margin-left: auto;
+  margin-left: auto;
+}
 
 .description {
   text-transform: capitalize;
   margin-left: 0.5em;
 }
-.weather{
-    padding-left: 10px;
-    padding-bottom: 10px;
+.weather {
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
-.weather.loading {
+.weather.hidden {
   visibility: hidden;
   max-height: 40px;
   position: relative;
 }
 
-.weather.loading:after {
+.weather.hidden:after {
   visibility: visible;
   content: "Loading...";
   color: white;

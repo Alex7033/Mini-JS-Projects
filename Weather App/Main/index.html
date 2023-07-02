@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <section class="notification hidden">
+      <h3 class="note">Location not found</h3>
+    </section>
     <main>
       <div class="card">
         <div class="cardContainer">
@@ -40,10 +43,12 @@
               </svg>
             </button>
           </div>
-          <div class="weather loading">
-            <h2 class="city">Weather in Denver</h2>
-            <div class="tempNumber">
-              <h1 class="temp">31°C</h1>
+          <section class="weather hidden">
+            <h2 class="city">-</h2>
+            <div class="flexContainer">
+              <div class="tempNumber">
+                <h1 class="temp">-</h1>
+              </div>
             </div>
             <div class="flexContainer">
               <img
@@ -51,11 +56,11 @@
                 alt=""
                 class="icon"
               />
-              <div class="description">Cloudy</div>
+              <div class="description">-</div>
             </div>
-            <div class="humidity">Humidity 60%</div>
-            <div class="wind">Wind speed 6.2 km/h</div>
-          </div>
+            <div class="humidity">-</div>
+            <div class="wind">-</div>
+          </section>
         </div>
       </div>
     </main>
