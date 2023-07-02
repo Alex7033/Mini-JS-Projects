@@ -8,6 +8,7 @@ const fetchWeather = async (city) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.cod == 404) {
+        // in case of 404 error
         console.log("error city");
         document.querySelector(".notification").classList.remove("hidden");
       } else {
