@@ -91,4 +91,5 @@ const activate = function () {
   search();
   document.querySelector(".search-bar").value = "";
 };
+// called on loading
 fetchWeather("berlin");
