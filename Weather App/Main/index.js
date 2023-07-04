@@ -9,7 +9,6 @@ const fetchWeather = async (city) => {
     .then((data) => {
       if (data.cod == 404) {
         // in case of 404 error
-        console.log("error city");
         document.querySelector(".notification").classList.remove("hidden");
       } else {
         displayWeather(data);
@@ -24,11 +23,6 @@ const displayWeather = (data) => {
   const { icon, description } = data.weather[0];
   const { temp, humidity } = data.main;
   const { speed } = data.wind;
-
-  console.log(name, timezone, cod, icon, description, temp, humidity, speed);
-  if (cod == 404) {
-    alert("error city");
-  }
 
   document.querySelector(".city").innerText = `Weather in ${name}`;
   document.querySelector(
@@ -66,7 +60,6 @@ const search = function () {
   let searchInput = document.querySelector(".search-bar").value;
 
   if (searchInput == "") {
-    console.log("no location input");
     document.querySelector(".notification").classList.remove("hidden");
     document.querySelector(".note").innerText = "Please type a location";
   } else {
